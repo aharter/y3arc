@@ -1,6 +1,7 @@
 package de.andreas.harter.yaaarc.db;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -101,6 +102,23 @@ public class DbAccess {
 		}
 
 		return mitochondriaBasePairs;
+	}
+
+	public List<MitochondriaBasePair> queryMitochondriaBasePairsForCytosolBasePair(CytosolBasePair cytosolBasePair) {
+		if (cytosolBasePair.getAminoAcid() == null || cytosolBasePair.getAminoAcid().getIdentifier().equals("")) {
+			try {
+				cytosolBasePair = cytosolBasePairDao.queryForId(cytosolBasePair.getCoding());
+			} catch (SQLException e) {
+				// TODO log this stuff
+				return new ArrayList<MitochondriaBasePair>();
+			}
+		}
+
+		if (cytosolBasePair == null) {
+			return new ArrayList<MitochondriaBasePair>();
+		}
+
+		return queryMitochondriaBasePairsForAminoAcid(cytosolBasePair.getAminoAcid());
 	}
 
 	private void importAminoAcid(Set<AminoAcid> aminoAcids) throws SQLException {
