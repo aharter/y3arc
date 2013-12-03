@@ -20,7 +20,7 @@ import de.andreas.harter.yaaarc.model.MitochondriaBasePair;
 
 public class DbAccess {
 
-	private static final String DATABASE_URL = "jdbc:sqlite:yaaarc.db";
+	private static final String DATABASE_URL = "jdbc:sqlite::resource:yaaarc.db";
 	private static final String PROBABILITY_COLUMN = "probability";
 	private static final String AMINO_ACID_ID_COLUMN = "aminoAcid_id";
 
