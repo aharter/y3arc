@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.andreas.harter.yaaarc.components.*?>
+<?import de.andreas.harter.yaaarc.model.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.andreas.harter.yaaarc.YaaarcController">
+	<top>
+		<VBox maxHeight="-1" spacing="10.0">
+			<children>
+				<HBox spacing="20.0">
+					<children>
+						<RadioButton mnemonicParsing="false" selected="true" text="AminoAcid to Mitochondria">
+							<toggleGroup>
+								<ToggleGroup fx:id="toggle" />
+							</toggleGroup>
+							<userData>
+								<TransformMode fx:value="AMINO_ACID_TO_MITOCHONDRIA" />
+							</userData>
+						</RadioButton>
+						<RadioButton mnemonicParsing="false" text="AminoAcid to Cytosol" toggleGroup="$toggle">
+							<userData>
+								<TransformMode fx:value="AMINO_ACID_TO_CYTOSOL" />
+							</userData>
+						</RadioButton>
+						<RadioButton mnemonicParsing="false" text="Cytosol to Mitochondria" toggleGroup="$toggle">
+							<userData>
+								<TransformMode fx:value="CYTOSOL_TO_MITOCHONDRIA" />
+							</userData>
+						</RadioButton>
+					</children>
+				</HBox>
+				<BlockTextArea fx:id="input" minHeight="100.0" wrapText="true" VBox.vgrow="ALWAYS" />
+			</children>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+		</VBox>
+	</top>
+	<bottom>
+		<BlockTextArea fx:id="output" editable="false" maxHeight="-1" minHeight="100.0" wrapText="true" />
+	</bottom>
+	<right>
+		<VBox fx:id="probabilityTable" prefWidth="180.0" />
+	</right>
+	<center>
+		<RollingGrid fx:id="rollingGrid" maxHeight="-1" />
+	</center>
+</BorderPane>
