@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
 	<children>
@@ -31,9 +33,31 @@
 				</HBox>
 				<HBox minHeight="150" prefHeight="150" styleClass="main-row" alignment="CENTER">
 					<children>
-						<Label minWidth="200" styleClass="main-label" />
-						<Label text="TRANSFORM TO" minWidth="200" maxWidth="8000" HBox.hgrow="ALWAYS" />
-						<Label minWidth="200" styleClass="main-label" />
+						<Label minWidth="200" styleClass="main-label" alignment="CENTER" />
+						<HBox minWidth="200" maxWidth="8000" alignment="CENTER" HBox.hgrow="ALWAYS">
+							<children>
+								<Polygon fill="GREY" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE">
+									<points>
+										<Double fx:value="0.0" />
+										<Double fx:value="20.0" />
+										<Double fx:value="100.0" />
+										<Double fx:value="20.0" />
+										<Double fx:value="100.0" />
+										<Double fx:value="0.0" />
+										<!--ARROW POINT -->
+										<Double fx:value="135.0" />
+										<Double fx:value="35.0" />
+										<Double fx:value="100.0" />
+										<Double fx:value="70.0" />
+										<Double fx:value="100.0" />
+										<Double fx:value="50.0" />
+										<Double fx:value="0.0" />
+										<Double fx:value="50.0" />
+									</points>
+								</Polygon>
+							</children>
+						</HBox>
+						<Label minWidth="200" styleClass="main-label" alignment="CENTER" />
 					</children>
 				</HBox>
 				<HBox>
