@@ -82,7 +82,9 @@ public class YaaarcController implements Initializable {
 		rollingGrid.registerSelectedMainRowListener(new SelectedMainRowListener() {
 
 			public void selected(String selectedFromID) {
-				setProbabilityTable(selectedFromID);
+				if (!invalid.get()) {
+					setProbabilityTable(selectedFromID);
+				}
 			}
 		});
 		rollingGrid.disableProperty().bind(invalid);
