@@ -147,6 +147,7 @@ public class YaaarcController implements Initializable {
 
 	private void appendOutput(String appendString) {
 		setOutput(output.getText() + appendString);
+		output.replaceText(0, output.getText().length(), output.getText());
 	}
 
 	private void setOutput(String setOutput) {
