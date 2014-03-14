@@ -46,9 +46,10 @@ public class RollingGrid extends HBox {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
+		initializeScrollbar();
 	}
 
-	public void setup() {
+	private void initializeScrollbar() {
 		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
 
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

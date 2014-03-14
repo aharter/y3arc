@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -45,13 +46,14 @@ public class YaaarcController implements Initializable {
 	private BooleanProperty invalid = new SimpleBooleanProperty(false);
 
 	public void initialize(URL location, ResourceBundle resources) {
-		output.setCharacterBlockSize(OUTPUT_BLOCK_SIZE);
-		input.setOnKeyReleased(new EventHandler<KeyEvent>() {
+		initializeToggleGroup();
+		initializeInput();
+		initializeOutput();
+		initializeRollingGrid();
+		requestFocusForInputField();
+	}
 
-			public void handle(KeyEvent event) {
-				textChanged();
-			}
-		});
+	private void initializeToggleGroup() {
 		toggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 
 			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
@@ -60,15 +62,38 @@ public class YaaarcController implements Initializable {
 				textChanged();
 			}
 		});
-		rollingGrid.setup();
+	}
+
+	private void initializeInput() {
+		input.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			public void handle(KeyEvent event) {
+				textChanged();
+			}
+		});
+	}
+
+	private void initializeOutput() {
+		output.setCharacterBlockSize(OUTPUT_BLOCK_SIZE);
+		output.disableProperty().bind(invalid);
+	}
+
+	private void initializeRollingGrid() {
 		rollingGrid.registerSelectedMainRowListener(new SelectedMainRowListener() {
 
 			public void selected(String selectedFromID) {
 				setProbabilityTable(selectedFromID);
 			}
 		});
-		output.disableProperty().bind(invalid);
 		rollingGrid.disableProperty().bind(invalid);
+	}
+
+	private void requestFocusForInputField() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				input.requestFocus();
+			}
+		});
 	}
 
 	private void textChanged() {
